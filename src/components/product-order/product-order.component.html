@@ -24,7 +24,7 @@
 <div class="container d-flex  align-items-center  justify-content-between ">
 
      <h1 class="text-success"><i class="fa-solid fa-money-bill-1   "></i><span class="text-dark  ">
-               {{total_money|currency:'EUR'}}
+               {{total_money|currency:'USD'}}
           </span>
      </h1>
      <p class="d-flex  align-items-center  justify-content-center ">
@@ -58,7 +58,7 @@
                     <td><input class="form-control " [readOnly]="true" type="number" name="product-count" id=""
                               value="{{prod.count}}">
                     </td>
-                    <td>{{ prod.price| currency :'EUR' :true:'2.0'}}</td>
+                    <td>{{ prod.price| currency :'USD' :true:'2.0'}}</td>
                </tr>
           </tbody>
           <tfoot>
@@ -69,11 +69,8 @@
 
 <!-- ! CreditCard  -->
 <h1 class="text-center">Credit Card Formatting</h1>
+
 <div class="d-flex align-items-center justify-content-between ">
-     <h1>123456789123</h1>
-     <h1 class="text-danger ">{{"123456789123" | creditCardFormat}}</h1>
-</div>
-<div class="d-flex align-items-center justify-content-between ">
-     <h1>000000000000</h1>
-     <h1 class="text-danger ">{{"000000000000000" | creditCardFormat}}</h1>
+     <input class="form-control w-25 " type="number" #nummm placeholder="Credit Card Number">
+     <h1 class="text-danger ">{{nummm.value | creditCardFormat}}</h1>
 </div>

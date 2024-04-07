@@ -7,18 +7,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CreditCardFormatPipe implements PipeTransform {
 
 
-  transform(numStr: string): string {
-    const numGroups = [];
+  transform(num_str: string): string {
+    const num_arr = [];
 
-    if (numStr.length <= 4) {
-      return numStr;
+    if (num_str.length <= 4) {
+      return num_str;
     }
 
-    for (let i = 0; i < numStr.length; i += 4) {
-      numGroups.push(numStr.slice(i, i + 4));
+    for (let i = 0; i < num_str.length; i += 4) {
+      num_arr.push(num_str.slice(i, i + 4));
     }
 
-    return numGroups.join('-');
+    return num_arr.join('-');
   }
 
 }
