@@ -1,0 +1,79 @@
+<!-- Select Options -->
+<h6 class="text-center ">{{ current_Date | date:"MMM dd '-' hh:mm:ss a"}}</h6>
+<div class="mb-3">
+     <select class="form-select form-select-lg form-control" [(ngModel)]="send_selected_id">
+          <option value="0" selected>ALL categories</option>
+          <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
+     </select>
+</div>
+
+
+<!-- ..................................................... -->
+<h6 class=" text-center">Start Product Component</h6>
+<hr class="text-bg-warning " style="height: 15px;">
+
+<!-- * Directive OF Child  * -->
+<app-products [Selected_id]="send_selected_id" (OnClickBuy)="AddToCard($event)"></app-products>
+<h6 class=" text-center  ">End Product Component</h6>
+<hr class="text-bg-warning   " style="height: 15px;">
+
+
+<!-- ...................................................... -->
+<p class="text-center display-5 text-danger ">Your Cart</p>
+
+<div class="container d-flex  align-items-center  justify-content-between ">
+
+     <h1 class="text-success"><i class="fa-solid fa-money-bill-1   "></i><span class="text-dark  ">
+               {{total_money|currency:'EUR'}}
+          </span>
+     </h1>
+     <p class="d-flex  align-items-center  justify-content-center ">
+          {{total_money| usdToEgy | currency :"EGY :" :true:'2.0'}}
+     </p>
+
+</div>
+
+<hr>
+
+<!-- ! Table Of Orders -->
+<div class="table-responsive">
+     <table class="table table-striped table-hover table-bordered table-danger align-middle">
+          <thead class="table-dark ">
+               <caption>
+                    ShoppingCartTable
+               </caption>
+               <tr>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Count</th>
+                    <th>Price</th>
+               </tr>
+          </thead>
+          <tbody class="table-group-divider">
+               <tr class="table-light" *ngFor="let prod of productOrderList">
+                    <td>{{prod.name}}</td>
+                    <td>
+                         <img style="width: 50px;" src="{{prod.imageUrl}}" alt="">
+                    </td>
+                    <td><input class="form-control " [readOnly]="true" type="number" name="product-count" id=""
+                              value="{{prod.count}}">
+                    </td>
+                    <td>{{ prod.price| currency :'EUR' :true:'2.0'}}</td>
+               </tr>
+          </tbody>
+          <tfoot>
+
+          </tfoot>
+     </table>
+</div>
+
+<!-- ! CreditCard  -->
+<h1 class="text-center">Credit Card Formatting</h1>
+<div class="d-flex align-items-center justify-content-between ">
+     <h1>123456789123</h1>
+     <h1 class="text-danger ">{{"123456789123" | creditCardFormat}}</h1>
+</div>
+<div class="d-flex align-items-center justify-content-between ">
+     <h1>000000000000</h1>
+     <h1 class="text-danger ">{{"000000000000000" | creditCardFormat}}</h1>
+</div>

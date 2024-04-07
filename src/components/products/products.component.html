@@ -1,18 +1,48 @@
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 my-4 g-3">
+<!-- <img Lightbox
+     src="https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_QL75_UX500_CR0,234,500,281_.jpg"
+     class="w-25 rounded-5 " alt=""> -->
 
-     <div class="col" *ngFor="let product of products">
-          <div class="card">
-               <img [src]="product.imageUrl" class="" alt="...">
-               <div class="card-body">
-                    <h5 class="card-title text-dark display-6" #productName>{{product.name}}</h5>
-                    <h5 class="card-text text-danger">${{product.price}}</h5>
-               </div>
-               <div class="card-footer d-flex justify-content-between align-items-center">
-                    <button class="btn btn-success" (click)="addToCard(product.name)">By now</button>
-                    <h6 class="card-text fw-bold">Available: {{product.quantity}}</h6>
+
+
+<!-- Products Cards -->
+<div
+     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5  my-4 g-3 d-flex align-items-center justify-content-around ">
+     <ng-container *ngFor="let product of FilteredProducts trackBy: trackProductsById ">
+          <div class="col">
+               <!-- <div class="col" [hidden]="selected_test != product.categoryId "> -->
+               <div class=" card " [class.bg-dark.text-light]="product.quantity == 0">
+                    <img Lightbox [src]="product.imageUrl" class="" alt="...">
+                    <div class="card-body">
+                         <h5 class="card-title  display-6 fw-bold " [class.text-light]="product.quantity == 0">
+                              {{product.name}}</h5>
+
+                         <h5 class="card-text text-success  fw-bold  " [class.text-light]="product.quantity == 0">
+                              ${{product.price}}</h5>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center  ">
+                         <button class="btn btn-sm      text-light fw-bold " (click)="addToCard(product.id)"
+                              [class.disabled]="product.quantity==0"
+                              [style.background-color]="(product.quantity==0) ? 'gray' : '#dc3545'">By now</button>
+                         <!-- 
+                         <h6 #quantity_of_Products class="card-text fw-bold" [class.text-light]="product.quantity == 0">
+                              {{product.quantity===0 ? 'Out OF Stock': 'Available: '+ product.quantity}}
+                         </h6> -->
+
+                         <ng-container [ngSwitch]="product.quantity">
+                              <h6 *ngSwitchCase="0" class="card-text fw-bold text-light ">out Of Stock</h6>
+                              <h6 *ngSwitchCase="1" class="card-text fw-bold text-dark  ">Last One</h6>
+                              <h6 *ngSwitchCase="2" class="card-text fw-bold text-dark  ">Last 2️⃣</h6>
+                              <h6 *ngSwitchDefault class="card-text fw-bold text-danger"> Available:
+                                   {{product.quantity}}</h6>
+                         </ng-container>
+
+
+
+                    </div>
                </div>
           </div>
-     </div>
+     </ng-container>
+
 
 
 </div>
