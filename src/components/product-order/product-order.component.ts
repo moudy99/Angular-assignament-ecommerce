@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IProduct } from '../../models/iproduct';
 import { ICategory } from '../../models/icategory';
@@ -14,8 +14,15 @@ import { CreditCardFormatPipe } from '../../Pipes/credit-card-format.pipe';
   templateUrl: './product-order.component.html',
   styleUrl: './product-order.component.css'
 })
-export class ProductOrderComponent {
+export class ProductOrderComponent implements AfterViewInit {
   categories: ICategory[];
+  // Test ViewCHild -> 
+  // Here the ! mark gives the typescript an promise that this variable will not be null or undefined 
+  @ViewChild("testViewChild") testViewChild!: ElementRef
+
+  // Access the child component By the @ViewChild decorator -> 
+  @ViewChild(ProductsComponent) prodComponent!:ProductsComponent
+  
 
   //List of the viewModel ==> 
   productOrderList: ProductOrderedViewModel[] = [];
@@ -41,6 +48,7 @@ export class ProductOrderComponent {
     ]
   }
 
+  // For the time --> 
   update() {
     
     setInterval(() => {
@@ -62,5 +70,10 @@ export class ProductOrderComponent {
     this.total_money += prod.price
     
   }
+  //// ! test the viewChild .. send template variable from childe to base ->
+  ngAfterViewInit(): void {
 
+    this.testViewChild.nativeElement.style.border = "2px solid  red"
+    console.log(this.prodComponent)
+  }
 }

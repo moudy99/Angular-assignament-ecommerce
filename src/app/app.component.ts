@@ -12,7 +12,7 @@ import { ProductOrderComponent } from '../components/product-order/product-order
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,NavbarComponent,ContentComponent,ProductsComponent,FooterComponent,FontAwesomeModule,CommonModule,ProductOrderComponent],
+  imports: [RouterOutlet, NavbarComponent, ContentComponent, ProductsComponent, FooterComponent, FontAwesomeModule, CommonModule, ProductOrderComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

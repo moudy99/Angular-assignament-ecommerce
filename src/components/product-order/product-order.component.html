@@ -28,7 +28,7 @@
           </span>
      </h1>
      <p class="d-flex  align-items-center  justify-content-center ">
-          {{total_money| usdToEgy | currency :"EGY :" :true:'2.0'}}
+          {{total_money| usdToEgy | currency :"EGY :" :'symbol':'2.0'}}
      </p>
 
 </div>
@@ -71,6 +71,6 @@
 <h1 class="text-center">Credit Card Formatting</h1>
 
 <div class="d-flex align-items-center justify-content-between ">
-     <input class="form-control w-25 " type="number" #nummm placeholder="Credit Card Number">
-     <h1 class="text-danger ">{{nummm.value | creditCardFormat}}</h1>
+     <input class="form-control w-25 " type="number" #testViewChild placeholder="Credit Card Number">
+     <h1 class="text-danger ">{{testViewChild .value | creditCardFormat}}</h1>
 </div>
